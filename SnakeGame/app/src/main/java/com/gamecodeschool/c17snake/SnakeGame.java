@@ -396,6 +396,12 @@ class SnakeGame extends SurfaceView implements Runnable, Game {
                 xCoordinate, 50, mPaint);
         mCanvas.drawText(getResources().getString(R.string.name2),
                 xCoordinate, 85, mPaint);
+        mCanvas.drawText(getResources().getString(R.string.name3),
+                xCoordinate, 120, mPaint);
+        mCanvas.drawText(getResources().getString(R.string.name4),
+                xCoordinate, 155, mPaint);
+        mCanvas.drawText(getResources().getString(R.string.name5),
+                xCoordinate, 190, mPaint);
     }
 
     // Method to get screen dimensions
