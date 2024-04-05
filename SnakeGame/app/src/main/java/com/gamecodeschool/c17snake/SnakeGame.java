@@ -302,9 +302,6 @@ class SnakeGame extends SurfaceView implements Runnable, Game {
             // Draw the score
             drawColorSize();
 
-            // Draw the names
-            drawNames();
-
             // Refactored
             drawConditions();
 
@@ -314,12 +311,19 @@ class SnakeGame extends SurfaceView implements Runnable, Game {
     }
 
     // Refactored
-    @Override
-    public void drawConditions() {
+   public void drawConditions() {
         if (isFirstPause && mPaused) {
             // Draw the "Tap to play" prompt if the game is initially paused
             drawPaused();
-        } else {
+        } else if(mPaused) {
+            // Draw the names if the game is paused
+            drawNames();
+            
+            // Draw the pause button only if the game is paused and not rendering "Tap to play"
+            drawButtonPause.drawButton(mCanvas, mPaint);
+        }
+
+        else {
             // Draw the pause button only if the game is paused and not rendering "Tap to play"
             drawButtonPause.drawButton(mCanvas, mPaint);
 
@@ -358,9 +362,11 @@ class SnakeGame extends SurfaceView implements Runnable, Game {
         if (isFirstPause && mPaused) {
             //Refactored
             drawTapToPlay();
+
+            drawNames();
         }
 
-        drawNames();
+        
     }
 
     // Refactored
