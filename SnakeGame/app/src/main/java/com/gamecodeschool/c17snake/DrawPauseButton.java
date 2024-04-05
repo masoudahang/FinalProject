@@ -13,6 +13,15 @@ import android.view.WindowManager;
 public class DrawPauseButton extends SurfaceView {
 
     private SnakeGame snakeGame;
+    private int screenWidth;
+    private int screenHeight;
+    private int buttonWidth;
+    private int buttonHeight;
+    private int buttonLeft;
+    private int buttonTop;
+    private float textWidth;
+    private float textX;
+    private float textY;
 
     public DrawPauseButton(Context context, SnakeGame snakeGame) {
         super(context);
@@ -24,25 +33,14 @@ public class DrawPauseButton extends SurfaceView {
         Display display = wm.getDefaultDisplay();
         DisplayMetrics metrics = new DisplayMetrics();
         display.getMetrics(metrics);
-        int screenWidth = metrics.widthPixels;
-        int screenHeight = metrics.heightPixels;
+        screenWidth = metrics.widthPixels;
+        screenHeight = metrics.heightPixels;
         return new Point(screenWidth, screenHeight);
     }
 
     public void drawButton(Canvas canvas, Paint paint) {
-        // Set color for the button background
-        paint.setColor(Color.argb(255, 203, 67, 53));
 
-        // Get screen dimensions
-        Point screenDimensions = getScreenDimensions();
-        int screenWidth = screenDimensions.x;
-        int screenHeight = screenDimensions.y;
-
-        // Define the size and position of the button relative to screen dimensions
-        int buttonWidth = screenWidth / 9;
-        int buttonHeight = screenHeight / 20;
-        int buttonLeft = (screenWidth - buttonWidth) / 2;
-        int buttonTop = screenHeight / 10;
+        drawButton(paint);
 
         // Draw a rounded rectangle representing the button
         canvas.drawRoundRect(
@@ -55,17 +53,38 @@ public class DrawPauseButton extends SurfaceView {
         paint.setColor(Color.WHITE);
         paint.setTextSize(buttonHeight * 0.9f);
 
+        drawButtonText(canvas, paint);
+
+    }
+
+    //Method Overloading
+    public void drawButton(Paint paint) {
+        // Set color for the button background
+        paint.setColor(Color.argb(255, 203, 67, 53));
+
+        // Get screen dimensions
+        Point screenDimensions = getScreenDimensions();
+        screenWidth = screenDimensions.x;
+        screenHeight = screenDimensions.y;
+
+        // Define the size and position of the button relative to screen dimensions
+        buttonWidth = screenWidth / 9;
+        buttonHeight = screenHeight / 20;
+        buttonLeft = (screenWidth - buttonWidth) / 2;
+        buttonTop = screenHeight / 10;
+    }
+
+    public void drawButtonText(Canvas canvas, Paint paint) {
+
         // Determine the text to be displayed based on the pause state
         String buttonText = snakeGame.isPaused() ? "Resume" : "Pause";
 
         // Calculate the position to center the text within the button
-        float textWidth = paint.measureText(buttonText);
-        float textX = buttonLeft + (buttonWidth - textWidth) / 2;
-        float textY = buttonTop + (float) buttonHeight / 2 + paint.getTextSize() / 3; // Adjust for vertical centering
+        textWidth = paint.measureText(buttonText);
+        textX = buttonLeft + (buttonWidth - textWidth) / 2;
+        textY = buttonTop + (float) buttonHeight / 2 + paint.getTextSize() / 3; // Adjust for vertical centering
 
         // Draw the determined text at the center of the button
         canvas.drawText(buttonText, textX, textY, paint);
     }
-
-
 }
