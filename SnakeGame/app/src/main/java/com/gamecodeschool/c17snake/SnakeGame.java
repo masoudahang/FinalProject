@@ -390,7 +390,7 @@ class SnakeGame extends SurfaceView implements Runnable, Game {
         int screenWidth = screenDimensions.x;
 
         // Calculate the x-coordinate to position the names
-        int xCoordinate = screenWidth - 250; // Adjust this value as needed
+        int xCoordinate = screenWidth - 340; // Adjust this value as needed
 
         mCanvas.drawText(getResources().getString(R.string.name1),
                 xCoordinate, 50, mPaint);
