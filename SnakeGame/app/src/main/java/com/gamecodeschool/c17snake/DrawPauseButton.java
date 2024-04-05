@@ -23,9 +23,17 @@ public class DrawPauseButton extends SurfaceView {
     private float textX;
     private float textY;
 
-    public DrawPauseButton(Context context, SnakeGame snakeGame) {
+    private static DrawPauseButton drawPauseButton;
+
+    private DrawPauseButton(Context context, SnakeGame snakeGame) {
         super(context);
         this.snakeGame = snakeGame;
+    }
+
+    public static DrawPauseButton getDrawPauseButton(Context context, SnakeGame snakeGame) {
+        if(drawPauseButton == null)
+            drawPauseButton = new DrawPauseButton(context, snakeGame);
+        return drawPauseButton;
     }
 
     public Point getScreenDimensions() {
