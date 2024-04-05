@@ -195,13 +195,13 @@ class SnakeGame extends SurfaceView implements Runnable, Game {
         int blockSize = size.x / NUM_BLOCKS_WIDE;
         mNumBlocksHigh = size.y / blockSize;
 
-        // Call the constructors of our two game objects
-        mApple = new Apple(context,
+        // Call the constructors of our two game objects by using the Singelton pattern
+        mApple = Apple.getApple(context,
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
                 blockSize);
 
-        mSnake = new Snake(context,
+        mSnake = Snake.getSnake(context,
                 new Point(NUM_BLOCKS_WIDE,
                         mNumBlocksHigh),
                 blockSize);
@@ -337,7 +337,6 @@ class SnakeGame extends SurfaceView implements Runnable, Game {
     // Refactored
     @Override
     public void drawColorSize() {
-
         // Set the size and color of the mPaint for the text
         mPaint.setColor(Color.argb(255, 255, 255, 255));
         mPaint.setTextSize(120);
