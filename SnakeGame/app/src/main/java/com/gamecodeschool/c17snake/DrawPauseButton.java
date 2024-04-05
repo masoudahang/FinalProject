@@ -23,6 +23,7 @@ public class DrawPauseButton extends SurfaceView {
     private float textX;
     private float textY;
 
+    // Maintain a single global reference to the DrawPauseButton
     private static DrawPauseButton drawPauseButton;
 
     private DrawPauseButton(Context context, SnakeGame snakeGame) {
@@ -30,6 +31,7 @@ public class DrawPauseButton extends SurfaceView {
         this.snakeGame = snakeGame;
     }
 
+    // Provide access to the DrawPauseButton, creating it if necessary
     public static DrawPauseButton getDrawPauseButton(Context context, SnakeGame snakeGame) {
         if(drawPauseButton == null)
             drawPauseButton = new DrawPauseButton(context, snakeGame);
