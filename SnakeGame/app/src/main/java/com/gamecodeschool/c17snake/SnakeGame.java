@@ -96,7 +96,7 @@ class SnakeGame extends SurfaceView implements Runnable, Game {
         createPauseButton();
 
         //Initialize the drawButtonPause
-        drawButtonPause = new DrawPauseButton(context, this);
+        drawButtonPause = DrawPauseButton.getDrawPauseButton(context, this);
     }
 
     public boolean isPaused() {
